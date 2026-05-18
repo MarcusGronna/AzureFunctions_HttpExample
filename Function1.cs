@@ -14,11 +14,12 @@ namespace HttpExample
             _logger = logger;
         }
 
-        [Function("Function1")]
+        [Function("HttpExample")]
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
         {
+            var name = req.Query["name"];
             _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!");
+            return new OkObjectResult($"Welcome {name} to Functions!");
         }
     }
 }
